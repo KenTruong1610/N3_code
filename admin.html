@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Quản Trị | Secondhand Fashion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/auth.js"></script>
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Secondhand Fashion</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Sản phẩm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tichdiem.html">Tích điểm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Liên hệ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="admin.html">Admin</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav" id="auth-nav">
+                    <!-- Đăng nhập/Đăng ký sẽ được thêm bằng JavaScript -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Dashboard -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="mb-4">Bảng điều khiển quản trị</h2>
+            
+            <ul class="nav nav-tabs mb-4" id="adminTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab">Tổng quan</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="products-tab" data-bs-toggle="tab" data-bs-target="#products" type="button" role="tab">Sản phẩm</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="users-tab" data-bs-toggle="tab" data-bs-target="#users" type="button" role="tab">Người dùng</button>
+                </li>
+            </ul>
+            
+            <div class="tab-content" id="adminTabsContent">
+                <!-- Overview Tab -->
+                <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="card bg-primary text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Tổng sản phẩm</h5>
+                                    <h2 id="total-products">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card bg-success text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Tổng người dùng</h5>
+                                    <h2 id="total-users">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card bg-info text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Doanh thu tháng</h5>
+                                    <h2 id="total-revenue">0 đ</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Thống kê đơn hàng</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="ordersChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Products Tab -->
+                <div class="tab-pane fade" id="products" role="tabpanel">
+                    <div class="d-flex justify-content-between mb-4">
+                        <h4>Quản lý sản phẩm</h4>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                            <i class="fas fa-plus me-2"></i> Thêm sản phẩm
+                        </button>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="products-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Hình ảnh</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Giá</th>
+                                    <th>Danh mục</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Sản phẩm sẽ được tải bằng JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Users Tab -->
+                <div class="tab-pane fade" id="users" role="tabpanel">
+                    <h4 class="mb-4">Quản lý người dùng</h4>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="users-table">
+                            <thead>
+                                <tr>
+                                    <th>Tên đăng nhập</th>
+                                    <th>Họ tên</th>
+                                    <th>Trạng thái</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Người dùng sẽ được tải bằng JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Product Modal -->
+    <div class="modal fade" id="addProductModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm sản phẩm mới</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addProductForm">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="productName" class="form-label">Tên sản phẩm</label>
+                                <input type="text" class="form-control" id="productName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="productPrice" class="form-label">Giá</label>
+                                <input type="number" class="form-control" id="productPrice" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="productCategory" class="form-label">Danh mục</label>
+                                <select class="form-select" id="productCategory" required>
+                                    <option value="men">Thời trang nam</option>
+                                    <option value="women">Thời trang nữ</option>
+                                    <option value="accessories">Phụ kiện</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="productImage" class="form-label">Hình ảnh</label>
+                                <input type="file" class="form-control" id="productImage" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productDescription" class="form-label">Mô tả ngắn</label>
+                            <textarea class="form-control" id="productDescription" rows="2" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productDetails" class="form-label">Chi tiết sản phẩm</label>
+                            <textarea class="form-control" id="productDetails" rows="4" required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="saveProductBtn">Lưu sản phẩm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div class="modal fade" id="editProductModal" tabindex="-1" aria-hidden="true">
+        <!-- Tương tự như Add Product Modal nhưng có thêm trường ID -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <h5>Về chúng tôi</h5>
+                    <p> Secondhand Fashion - Nơi mua sắm sản phẩm đã qua sử dụng chất lượng và giá cả phải chăng.</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 279 Nguyễn Tri Phương, Phường 5, Quận 10, TP. Hồ Chí Minh</p>
+                    <p><i class="fas fa-phone-alt"></i> 0123.456.789</p>
+                    <p><i class="fas fa-envelope"></i> styleshare@gmail.com</p>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5>Liên kết nhanh</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-th-list"></i> <a href="products.html" class="text-white">Sản phẩm</a></li>
+                        <li><i class="fas fa-users"></i> <a href="blog.html" class="text-white">Blog</a></li>
+                        <li><i class="fas fa-phone-alt"></i> <a href="contact.html" class="text-white">Liên hệ</a></li>
+                        <li><i class="fas fa-shopping-cart"></i> <a href="cart.html" class="text-white">Giỏ hàng</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5>Các phương thức vận chuyển</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-shipping-fast"></i> Giao hàng nhanh</li>
+                        <li><i class="fas fa-box-open"></i> Giao hàng tiết kiệm</li>
+                    </ul>
+                    <h5>Các phương thức thanh toán</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-wallet"></i> Momo</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Thanh toán khi nhận hàng</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5>Kết nối</h5>
+                    <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 Secondhand Fashion. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        // Kiểm tra quyền admin khi trang tải
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = getCurrentUser();
+            
+            if (!currentUser || currentUser.role !== 'admin') {
+                alert('Bạn không có quyền truy cập trang này!');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            updateAuthStatus();
+            updateCartCount();
+            loadAdminData();
+            
+            // Cập nhật tab active khi chuyển tab
+            const adminTabs = document.querySelectorAll('#adminTabs .nav-link');
+            adminTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-bs-target').substring(1);
+                    loadTabContent(tabId);
+                });
+            });
+            
+            // Load tab mặc định
+            loadTabContent('overview');
+        });
+        
+        function loadAdminData() {
+            // Load tổng quan
+            document.getElementById('total-products').textContent = products.length;
+            document.getElementById('total-users').textContent = getUsers().length;
+            
+            // Giả lập doanh thu
+            document.getElementById('total-revenue').textContent = '15.000.000 đ';
+            
+            // Vẽ biểu đồ
+            drawOrdersChart();
+        }
+        
+        function loadTabContent(tabId) {
+            switch(tabId) {
+                case 'products':
+                    loadProductsTable();
+                    break;
+                case 'users':
+                    loadUsersTable();
+                    break;
+                case 'overview':
+                    // Đã load khi trang tải
+                    break;
+            }
+        }
+        
+        function loadProductsTable() {
+            const tableBody = document.querySelector('#products-table tbody');
+            let html = '';
+            
+            products.forEach(product => {
+                html += `
+                    <tr>
+                        <td>${product.id}</td>
+                        <td><img src="${product.image}" width="50" height="50" class="img-thumbnail"></td>
+                        <td>${product.name}</td>
+                        <td>${formatPrice(product.price)} đ</td>
+                        <td>${getCategoryName(product.category)}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary me-2 edit-product" data-id="${product.id}">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger delete-product" data-id="${product.id}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            tableBody.innerHTML = html;
+            
+            // Thêm sự kiện cho các nút
+            document.querySelectorAll('.edit-product').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    editProduct(productId);
+                });
+            });
+            
+            document.querySelectorAll('.delete-product').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
+                        deleteProduct(productId);
+                    }
+                });
+            });
+        }
+        
+        function loadUsersTable() {
+            const tableBody = document.querySelector('#users-table tbody');
+            const users = getUsers();
+            let html = '';
+            
+            users.forEach(user => {
+                html += `
+                    <tr>
+                        <td>${user.username}</td>
+                        <td>${user.name}</td>
+                        <td>
+                            <span class="badge ${user.active ? 'bg-success' : 'bg-secondary'}">
+                                ${user.active ? 'Hoạt động' : 'Không hoạt động'}
+                            </span>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm ${user.active ? 'btn-warning' : 'btn-success'} me-2 toggle-user" 
+                                data-username="${user.username}" data-active="${user.active}">
+                                <i class="fas ${user.active ? 'fa-user-slash' : 'fa-user-check'}"></i>
+                                ${user.active ? 'Vô hiệu hóa' : 'Kích hoạt'}
+                            </button>
+                            <button class="btn btn-sm btn-danger delete-user" data-username="${user.username}">
+                                <i class="fas fa-trash"></i> Xóa
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            tableBody.innerHTML = html;
+            
+            // Thêm sự kiện cho các nút
+            document.querySelectorAll('.toggle-user').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const username = this.getAttribute('data-username');
+                    const active = this.getAttribute('data-active') === 'true';
+                    updateUserStatus(username, !active);
+                    loadUsersTable(); // Reload bảng
+                });
+            });
+            
+            document.querySelectorAll('.delete-user').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const username = this.getAttribute('data-username');
+                    if (confirm(`Bạn có chắc chắn muốn xóa người dùng ${username}?`)) {
+                        deleteUser(username);
+                        loadUsersTable(); // Reload bảng
+                    }
+                });
+            });
+        }
+        
+        function drawOrdersChart() {
+            const ctx = document.getElementById('ordersChart').getContext('2d');
+            
+            // Giả lập dữ liệu
+            const months = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6'];
+            const ordersData = [120, 190, 150, 210, 180, 250];
+            const revenueData = [5000000, 7500000, 6000000, 8500000, 7000000, 9500000];
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: months,
+                    datasets: [
+                        {
+                            label: 'Số đơn hàng',
+                            data: ordersData,
+                            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Doanh thu (triệu)',
+                            data: revenueData.map(v => v / 1000000),
+                            backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1,
+                            type: 'line',
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Số đơn hàng'
+                            }
+                        },
+                        y1: {
+                            position: 'right',
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Doanh thu (triệu VNĐ)'
+                            },
+                            grid: {
+                                drawOnChartArea: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Các hàm quản lý sản phẩm
+
+        // Thêm sản phẩm mới từ form modal
+        function addProduct() {
+            const name = document.getElementById('productName').value.trim();
+            const price = parseInt(document.getElementById('productPrice').value, 10);
+            const category = document.getElementById('productCategory').value;
+            const description = document.getElementById('productDescription').value.trim();
+            const details = document.getElementById('productDetails').value.trim();
+            const imageInput = document.getElementById('productImage');
+            let image = 'images/default-product.png';
+
+            if (imageInput.files && imageInput.files[0]) {
+            // Đọc file ảnh và chuyển sang base64 (demo, thực tế nên upload lên server)
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                image = e.target.result;
+                saveProduct();
+            };
+            reader.readAsDataURL(imageInput.files[0]);
+            } else {
+            saveProduct();
+            }
+
+            function saveProduct() {
+            const newId = products.length ? Math.max(...products.map(p => p.id)) + 1 : 1;
+            const product = {
+                id: newId,
+                name,
+                price,
+                category,
+                description,
+                details,
+                image
+            };
+            products.push(product);
+            // Lưu vào localStorage nếu có
+            if (window.localStorage) {
+                localStorage.setItem('products', JSON.stringify(products));
+            }
+            loadProductsTable();
+            document.getElementById('addProductForm').reset();
+            const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('addProductModal'));
+            modal.hide();
+            loadAdminData();
+            }
+        }
+
+        // Hiển thị modal chỉnh sửa sản phẩm
+        function editProduct(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            // Tạo nội dung modal chỉnh sửa
+            const modalHtml = `
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Chỉnh sửa sản phẩm</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProductForm">
+                    <input type="hidden" id="editProductId" value="${product.id}">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                        <label for="editProductName" class="form-label">Tên sản phẩm</label>
+                        <input type="text" class="form-control" id="editProductName" value="${product.name}" required>
+                        </div>
+                        <div class="col-md-6">
+                        <label for="editProductPrice" class="form-label">Giá</label>
+                        <input type="number" class="form-control" id="editProductPrice" value="${product.price}" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                        <label for="editProductCategory" class="form-label">Danh mục</label>
+                        <select class="form-select" id="editProductCategory" required>
+                            <option value="men" ${product.category === 'men' ? 'selected' : ''}>Thời trang nam</option>
+                            <option value="women" ${product.category === 'women' ? 'selected' : ''}>Thời trang nữ</option>
+                            <option value="accessories" ${product.category === 'accessories' ? 'selected' : ''}>Phụ kiện</option>
+                        </select>
+                        </div>
+                        <div class="col-md-6">
+                        <label for="editProductImage" class="form-label">Hình ảnh</label>
+                        <input type="file" class="form-control" id="editProductImage" accept="image/*">
+                        <img src="${product.image}" id="editProductPreview" class="img-thumbnail mt-2" width="80">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editProductDescription" class="form-label">Mô tả ngắn</label>
+                        <textarea class="form-control" id="editProductDescription" rows="2" required>${product.description}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editProductDetails" class="form-label">Chi tiết sản phẩm</label>
+                        <textarea class="form-control" id="editProductDetails" rows="4" required>${product.details}</textarea>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="updateProductBtn">Cập nhật</button>
+                </div>
+                </div>
+            </div>
+            `;
+            const modal = document.getElementById('editProductModal');
+            modal.innerHTML = modalHtml;
+            const bsModal = new bootstrap.Modal(modal);
+            bsModal.show();
+
+            // Xem trước ảnh khi chọn file mới
+            document.getElementById('editProductImage').addEventListener('change', function(e) {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                document.getElementById('editProductPreview').src = ev.target.result;
+                };
+                reader.readAsDataURL(this.files[0]);
+            }
+            });
+
+            // Cập nhật sản phẩm khi nhấn nút
+            document.getElementById('updateProductBtn').onclick = function() {
+            const id = parseInt(document.getElementById('editProductId').value, 10);
+            const name = document.getElementById('editProductName').value.trim();
+            const price = parseInt(document.getElementById('editProductPrice').value, 10);
+            const category = document.getElementById('editProductCategory').value;
+            const description = document.getElementById('editProductDescription').value.trim();
+            const details = document.getElementById('editProductDetails').value.trim();
+            const imageInput = document.getElementById('editProductImage');
+            let image = document.getElementById('editProductPreview').src;
+
+            function updateAndSave(img) {
+                const idx = products.findIndex(p => p.id === id);
+                if (idx !== -1) {
+                products[idx] = {
+                    ...products[idx],
+                    name,
+                    price,
+                    category,
+                    description,
+                    details,
+                    image: img
+                };
+                if (window.localStorage) {
+                    localStorage.setItem('products', JSON.stringify(products));
+                }
+                loadProductsTable();
+                bsModal.hide();
+                loadAdminData();
+                }
+            }
+
+            if (imageInput.files && imageInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                updateAndSave(e.target.result);
+                };
+                reader.readAsDataURL(imageInput.files[0]);
+            } else {
+                updateAndSave(image);
+            }
+            };
+        }
+
+        // Xóa sản phẩm
+        function deleteProduct(productId) {
+            const idx = products.findIndex(p => p.id === productId);
+            if (idx !== -1) {
+            products.splice(idx, 1);
+            if (window.localStorage) {
+                localStorage.setItem('products', JSON.stringify(products));
+            }
+            loadProductsTable();
+            loadAdminData();
+            }
+        }
+
+        // Sự kiện lưu sản phẩm mới
+        document.getElementById('saveProductBtn').addEventListener('click', addProduct);
+    </script>
+</body>
+</html>

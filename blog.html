@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Secondhand Fashion</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/auth.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Secondhand Fashion</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Sản phẩm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tichdiem.html">Tích điểm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Liên hệ</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i> Giỏ hàng
+                            <span class="badge bg-primary cart-count">0</span>
+                        </a>
+                    </li>
+                    <ul class="navbar-nav" id="auth-nav">
+                        <!-- Đăng nhập/Đăng ký sẽ được thêm bằng JavaScript -->
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Blog Thời Trang Secondhand</h2>
+            
+            <div class="row">
+                <!-- Main Blog Post -->
+                <div class="col-lg-8 mb-4">
+                    <div class="card mb-4">
+                        <img src="images/blog1.jpg" class="card-img-top" alt="Blog post">
+                        <div class="card-body">
+                            <h3 class="card-title">Mẹo mua đồ secondhand chất lượng</h3>
+                            <p class="text-muted">Đăng ngày: 15/10/2023 | Tác giả: Nguyễn Thị A</p>
+                            <p class="card-text">Mua sắm đồ secondhand không chỉ giúp bạn tiết kiệm chi phí mà còn góp phần bảo vệ môi trường. Tuy nhiên, để mua được những món đồ ưng ý, bạn cần lưu ý một số điểm sau...</p>
+                            <a href="#" class="btn btn-primary">Đọc tiếp</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Categories -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Danh mục bài viết</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="list-unstyled">
+                                        <li><a href="#" class="text-decoration-none">Mẹo mua sắm</a></li>
+                                        <li><a href="#" class="text-decoration-none">Bảo quản đồ cũ</a></li>
+                                        <li><a href="#" class="text-decoration-none">Xu hướng thời trang</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="list-unstyled">
+                                        <li><a href="#" class="text-decoration-none">Câu chuyện tái chế</a></li>
+                                        <li><a href="#" class="text-decoration-none">Phong cách sống</a></li>
+                                        <li><a href="#" class="text-decoration-none">Khuyến mãi</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Popular Posts -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Bài viết phổ biến</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <h6><a href="#" class="text-decoration-none">10 cách phối đồ secondhand cực chất</a></h6>
+                                <small class="text-muted">12/09/2023</small>
+                            </div>
+                            <div class="mb-3">
+                                <h6><a href="#" class="text-decoration-none">Làm thế nào để khử mùi quần áo cũ?</a></h6>
+                                <small class="text-muted">05/09/2023</small>
+                            </div>
+                            <div class="mb-3">
+                                <h6><a href="#" class="text-decoration-none">Địa chỉ mua đồ secondhand uy tín tại Hà Nội</a></h6>
+                                <small class="text-muted">28/08/2023</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Đăng ký nhận tin</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Nhận các bài viết mới nhất qua email</p>
+                            <form>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="Email của bạn">
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- More Blog Posts -->
+            <div class="row mt-4">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="images/blog2.jpg" class="card-img-top" alt="Blog post">
+                        <div class="card-body">
+                            <h5 class="card-title">Bảo quản quần áo secondhand</h5>
+                            <p class="card-text">Các phương pháp giúp quần áo secondhand của bạn bền đẹp theo thời gian...</p>
+                            <a href="#" class="btn btn-sm btn-outline-secondary">Đọc tiếp</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="images/blog3.jpg" class="card-img-top" alt="Blog post">
+                        <div class="card-body">
+                            <h5 class="card-title">Xu hướng thời trang bền vững 2023</h5>
+                            <p class="card-text">Những xu hướng thời trang secondhand đang thịnh hành trong năm nay...</p>
+                            <a href="#" class="btn btn-sm btn-outline-secondary">Đọc tiếp</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="images/blog4.jpg" class="card-img-top" alt="Blog post">
+                        <div class="card-body">
+                            <h5 class="card-title">Tái chế quần áo cũ thành đồ mới</h5>
+                            <p class="card-text">Cách biến những món đồ cũ thành những món đồ mới độc đáo...</p>
+                            <a href="#" class="btn btn-sm btn-outline-secondary">Đọc tiếp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <nav aria-label="Page navigation" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Trước</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Tiếp</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <h5>Về chúng tôi</h5>
+                    <p> Secondhand Fashion - Nơi mua sắm sản phẩm đã qua sử dụng chất lượng và giá cả phải chăng.</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 279 Nguyễn Tri Phương, Phường 5, Quận 10, TP. Hồ Chí Minh</p>
+                    <p><i class="fas fa-phone-alt"></i> 0123.456.789</p>
+                    <p><i class="fas fa-envelope"></i> styleshare@gmail.com</p>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5>Liên kết nhanh</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-th-list"></i> <a href="products.html" class="text-white">Sản phẩm</a></li>
+                        <li><i class="fas fa-users"></i> <a href="blog.html" class="text-white">Blog</a></li>
+                        <li><i class="fas fa-phone-alt"></i> <a href="contact.html" class="text-white">Liên hệ</a></li>
+                        <li><i class="fas fa-shopping-cart"></i> <a href="cart.html" class="text-white">Giỏ hàng</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5>Các phương thức vận chuyển</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-shipping-fast"></i> Giao hàng nhanh</li>
+                        <li><i class="fas fa-box-open"></i> Giao hàng tiết kiệm</li>
+                    </ul>
+                    <h5>Các phương thức thanh toán</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-wallet"></i> Momo</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Thanh toán khi nhận hàng</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5>Kết nối</h5>
+                    <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 Secondhand Fashion. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+    <script>
+        // Update cart count on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>

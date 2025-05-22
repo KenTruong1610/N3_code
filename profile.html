@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ sơ cá nhân | Secondhand Fashion</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/auth.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Secondhand Fashion</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Sản phẩm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tichdiem.html">Tích điểm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Liên hệ</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i> Giỏ hàng
+                            <span class="badge bg-primary cart-count">0</span>
+                        </a>
+                    </li>
+                    <ul class="navbar-nav" id="auth-nav">
+                        <!-- Đăng nhập/Đăng ký sẽ được thêm bằng JavaScript -->
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <img src="images/a.jpg" class="rounded-circle mb-3" alt="Avatar" width="150">
+                            <h4 id="profile-name">Nguyễn Văn A</h4>
+                            <p class="text-muted mb-0" id="profile-username">@username</p>
+                            <p class="text-muted" id="member-since">Thành viên từ: 01/01/2023</p>
+                            
+                            <div class="d-flex justify-content-center mb-3">
+                                <div class="px-3">
+                                    <h5 id="total-orders">0</h5>
+                                    <p class="small text-muted mb-0">Đơn hàng</p>
+                                </div>
+                                <div class="px-3">
+                                    <h5 id="total-points">2</h5>
+                                    <p class="small text-muted mb-0">Điểm tích lũy</p>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-outline-danger btn-sm" onclick="logoutUser()">
+                                <i class="fas fa-sign-out-alt me-1"></i> Đăng xuất
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Thông tin cá nhân</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="profile-form">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="fullname" class="form-label">Họ và tên</label>
+                                        <input type="text" class="form-control" id="fullname" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="phone" class="form-label">Số điện thoại</label>
+                                        <input type="tel" class="form-control" id="phone">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="address" class="form-label">Địa chỉ</label>
+                                        <input type="text" class="form-control" id="address">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Cập nhật thông tin</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Lịch sử mua hàng</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table" id="order-history">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã đơn hàng</th>
+                                            <th>Ngày mua</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Tổng tiền</th>
+                                            <th>Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Orders will be loaded here -->
+                                        <tr>
+                                            <td colspan="5" class="text-center py-4">Bạn chưa có đơn hàng nào</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <h5>Về chúng tôi</h5>
+                    <p> Secondhand Fashion - Nơi mua sắm sản phẩm đã qua sử dụng chất lượng và giá cả phải chăng.</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 279 Nguyễn Tri Phương, Phường 5, Quận 10, TP. Hồ Chí Minh</p>
+                    <p><i class="fas fa-phone-alt"></i> 0123.456.789</p>
+                    <p><i class="fas fa-envelope"></i> styleshare@gmail.com</p>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5>Liên kết nhanh</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-th-list"></i> <a href="products.html" class="text-white">Sản phẩm</a></li>
+                        <li><i class="fas fa-users"></i> <a href="blog.html" class="text-white">Blog</a></li>
+                        <li><i class="fas fa-phone-alt"></i> <a href="contact.html" class="text-white">Liên hệ</a></li>
+                        <li><i class="fas fa-shopping-cart"></i> <a href="cart.html" class="text-white">Giỏ hàng</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5>Các phương thức vận chuyển</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-shipping-fast"></i> Giao hàng nhanh</li>
+                        <li><i class="fas fa-box-open"></i> Giao hàng tiết kiệm</li>
+                    </ul>
+                    <h5>Các phương thức thanh toán</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-wallet"></i> Momo</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Thanh toán khi nhận hàng</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5>Kết nối</h5>
+                    <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 Secondhand Fashion. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+    <script>
+        // Load profile data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            loadProfileData();
+        });
+
+        // Function to load profile data
+        function loadProfileData() {
+            const currentUser = getCurrentUser();
+            
+            if (currentUser) {
+                // Update profile info
+                document.getElementById('profile-name').textContent = currentUser.name;
+                document.getElementById('profile-username').textContent = '@' + currentUser.username;
+                
+                // Set default values for form
+                document.getElementById('fullname').value = currentUser.name;
+                
+                // Load order history (this would normally come from backend)
+                loadOrderHistory(currentUser.username);
+            } else {
+                // If not logged in, redirect to login page
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Function to load order history (mock data for demo)
+        function loadOrderHistory(username) {
+            // In a real app, this would come from an API
+            const mockOrders = [
+                {
+                    id: 'SHF-2023-001',
+                    date: '15/10/2023',
+                    items: ['Áo khoác denim nam', 'Quần jeans nam'],
+                    total: 450000,
+                    status: 'Đã giao'
+                },
+                {
+                    id: 'SHF-2023-002',
+                    date: '20/09/2023',
+                    items: ['Váy hoa nữ'],
+                    total: 180000,
+                    status: 'Đã giao'
+                }
+            ];
+            
+            const orderTable = document.querySelector('#order-history tbody');
+            
+            if (mockOrders.length > 0) {
+                orderTable.innerHTML = '';
+                
+                mockOrders.forEach(order => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td><a href="#">${order.id}</a></td>
+                        <td>${order.date}</td>
+                        <td>${order.items.join(', ')}</td>
+                        <td>${order.total.toLocaleString()} đ</td>
+                        <td><span class="badge bg-success">${order.status}</span></td>
+                    `;
+                    orderTable.appendChild(row);
+                });
+                
+                // Update order count
+                document.getElementById('total-orders').textContent = mockOrders.length;
+            }
+        }
+    </script>
+</body>
+</html>

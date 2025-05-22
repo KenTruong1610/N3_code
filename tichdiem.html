@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương trình tích điểm | StyleShare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/auth.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .header {
+            background-color: #343a40;
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .membership-card {
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: none;
+        }
+        
+        .card-header {
+            padding: 20px;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .bronze {
+            background: linear-gradient(135deg, #cd7f32, #a67c52);
+            color: white;
+        }
+        
+        .silver {
+            background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+            color: white;
+        }
+        
+        .gold {
+            background: linear-gradient(135deg, #ffd700, #daa520);
+            color: white;
+        }
+        
+        .benefits-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .benefits-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .benefits-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .benefits-list li i {
+            margin-right: 10px;
+            color: #28a745;
+        }
+        
+        .divider {
+            border-top: 2px dashed #ccc;
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .divider-text {
+            background-color: #f8f9fa;
+            padding: 0 20px;
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            color: #6c757d;
+        }
+        
+        .rules-section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+        
+        .highlight-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #343a40;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Secondhand Fashion</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Sản phẩm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="tichdiem.html">Tích điểm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Liên hệ</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i> Giỏ hàng
+                            <span class="badge bg-primary cart-count">0</span>
+                        </a>
+                    </li>
+                    <ul class="navbar-nav" id="auth-nav">
+                        <!-- Đăng nhập/Đăng ký sẽ được thêm bằng JavaScript -->
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="header">
+        <div class="container">
+            <h1>Chương trình tích điểm cùng Secondhand Fashion</h1>
+            <p class="lead">Đặt quyền riêng cho khách hàng thân thiết tại Secondhand Fashion - nơi mọi lớn tuổi có thể tiếp đến với thời trang cao cấp với mức giá không tưởng.</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Rules Section -->
+        <div class="rules-section">
+            <h2 class="mb-4">QUY ĐỊNH TÍCH ĐIỂM:</h2>
+            <p>Mỗi sản phẩm khách hàng mua sẽ tích được 1 điểm.</p>
+            <p>Khách hàng cũng có thể tích lũy thêm điểm từ việc đăng kí, nhận blog hàng tháng,..."</p>
+            <div class="highlight-box">
+                <p class="mb-0"><strong>Lưu ý:</strong> Điểm tích lũy sẽ được làm mới mỗi năm.</p>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="divider">
+            <span class="divider-text">HẠNG THÀNH VIÊN</span>
+        </div>
+
+        <!-- Bronze Membership -->
+        <div class="card membership-card">
+            <div class="card-header bronze">
+                THẺ ĐỒNG
+            </div>
+            <div class="card-body">
+                <h5 class="card-title mb-4">Quyền lợi:</h5>
+                <ul class="benefits-list">
+                    <li><i class="fas fa-check-circle"></i> Giảm 25% khi mua hàng</li>
+                    <li><i class="fas fa-check-circle"></i> Hỗ trợ đổi trả thêm 3 ngày</li>
+                </ul>
+                
+                <h5 class="card-title mt-4">Điều kiện:</h5>
+                <p>6 lần mua hàng tại cửa hàng</p>
+                
+                <h5 class="card-title mt-4">Thời hạn:</h5>
+                <p>Sáu tháng kể từ khi quy đổi có hiệu lực</p>
+            </div>
+        </div>
+
+        <!-- Silver Membership -->
+        <div class="card membership-card">
+            <div class="card-header silver">
+                THẺ BẠC
+            </div>
+            <div class="card-body">
+                <h5 class="card-title mb-4">Quyền lợi:</h5>
+                <ul class="benefits-list">
+                    <li><i class="fas fa-check-circle"></i> Giảm 50% khi mua hàng</li>
+                    <li><i class="fas fa-check-circle"></i> Hỗ trợ đổi trả thêm 10 ngày</li>
+                    <li><i class="fas fa-check-circle"></i> Giảm 50% tiền ship</li>
+                </ul>
+                
+                <h5 class="card-title mt-4">Điều kiện:</h5>
+                <p>20 lần mua hàng tại cửa hàng</p>
+                
+                <h5 class="card-title mt-4">Thời hạn:</h5>
+                <p>Sáu tháng kể từ khi quy đổi có hiệu lực</p>
+            </div>
+        </div>
+
+        <!-- Gold Membership -->
+        <div class="card membership-card">
+            <div class="card-header gold">
+                THẺ VÀNG
+            </div>
+            <div class="card-body">
+                <h5 class="card-title mb-4">Quyền lợi:</h5>
+                <ul class="benefits-list">
+                    <li><i class="fas fa-check-circle"></i> Giảm 75% khi mua hàng</li>
+                    <li><i class="fas fa-check-circle"></i> Hỗ trợ đổi trả thêm 1 tháng</li>
+                    <li><i class="fas fa-check-circle"></i> Freeship (trừ trường hợp giao hàng xa)</li>
+                </ul>
+                <h5 class="card-title mt-4">Điều kiện:</h5>
+                <p>80 lần mua hàng tại cửa hàng</p>
+                
+                <h5 class="card-title mt-4">Thời hạn:</h5>
+                <p>Sáu tháng kể từ khi quy đổi có hiệu lực</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <h5>Về chúng tôi</h5>
+                    <p> Secondhand Fashion - Nơi mua sắm sản phẩm đã qua sử dụng chất lượng và giá cả phải chăng.</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 279 Nguyễn Tri Phương, Phường 5, Quận 10, TP. Hồ Chí Minh</p>
+                    <p><i class="fas fa-phone-alt"></i> 0123.456.789</p>
+                    <p><i class="fas fa-envelope"></i> styleshare@gmail.com</p>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5>Liên kết nhanh</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-th-list"></i> <a href="products.html" class="text-white">Sản phẩm</a></li>
+                        <li><i class="fas fa-users"></i> <a href="blog.html" class="text-white">Blog</a></li>
+                        <li><i class="fas fa-phone-alt"></i> <a href="contact.html" class="text-white">Liên hệ</a></li>
+                        <li><i class="fas fa-shopping-cart"></i> <a href="cart.html" class="text-white">Giỏ hàng</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5>Các phương thức vận chuyển</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-shipping-fast"></i> Giao hàng nhanh</li>
+                        <li><i class="fas fa-box-open"></i> Giao hàng tiết kiệm</li>
+                    </ul>
+                    <h5>Các phương thức thanh toán</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-wallet"></i> Momo</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Thanh toán khi nhận hàng</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5>Kết nối</h5>
+                    <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 Secondhand Fashion. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
