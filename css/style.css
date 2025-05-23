@@ -510,4 +510,28 @@ footer a:hover {
     margin: 20px 0 0; /* Thêm khoảng cách giữa ảnh và tiêu đề */
 }
 
+.tab-pane canvas {
+    max-width: 100%;
+    height: auto !important;
+}
+
+#topProductsTable {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+#topProductsTable th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+#topProductsTable td {
+    vertical-align: middle;
+}
+
+.card-body .table-responsive {
+    max-height: 300px;
+    overflow-y: auto;
+}
 

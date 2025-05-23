@@ -739,17 +739,7 @@ function calculateTotals() {
     totalElement.textContent = `${formatPrice(total)} đ`;
 }
 
-// Cập nhật hàm loadCartItems, thay thế phần tính toán bằng cách gọi calculateTotals()
-// Thay thế đoạn này:
-/*
-const shipping = 20000;
-const total = subtotal + shipping;
 
-subtotalElement.textContent = `${formatPrice(subtotal)} đ`;
-shippingElement.textContent = `${formatPrice(shipping)} đ`;
-totalElement.textContent = `${formatPrice(total)} đ`;
-*/
-// Bằng:
 calculateTotals();
 
 // Thêm sự kiện cho nút áp dụng mã giảm giá (trong phần DOMContentLoaded)
@@ -791,6 +781,54 @@ document.addEventListener('DOMContentLoaded', function() {
 checkLoginStatus();
 updateCartCount();
 });
+/**
+ * Load featured products on home page
+ */
+/**
+ * Load featured products on home page
+ */
+function loadFeaturedProducts() {
+    const featuredContainer = document.getElementById('featured-products');
+    
+    if (featuredContainer) {
+        // Get 3 random products (đảm bảo không trùng lặp)
+        const shuffledProducts = [...products].sort(() => 0.5 - Math.random());
+        const featuredProducts = shuffledProducts.slice(0, 3);
+        
+        let html = '';
+        featuredProducts.forEach(product => {
+            html += `
+                <div class="col-md-4 mb-4">
+                    <div class="card product-card h-100">
+                        <img src="${product.image}" class="card-img-top product-img" alt="${product.name}" onerror="this.src='images/default-product.jpg'">
+                        <div class="card-body">
+                            <h5 class="card-title">${product.name}</h5>
+                            <p class="card-text">${product.description}</p>
+                            <p class="fw-bold text-primary">${formatPrice(product.price)} đ</p>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="product-detail.html?id=${product.id}" class="btn btn-sm btn-outline-primary me-2">Xem chi tiết</a>
+                            <button class="btn btn-sm btn-primary add-to-cart" data-id="${product.id}">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        featuredContainer.innerHTML = html;
+        
+        // Add event listeners
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productId = parseInt(this.getAttribute('data-id'));
+                addToCart(productId);
+                alert('Đã thêm vào giỏ hàng!');
+            });
+        });
+    } else {
+        console.error('Không tìm thấy phần tử #featured-products');
+    }
+}
 
 
 // Initialize cart count on page load

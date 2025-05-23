@@ -42,12 +42,15 @@ function loginUser(username, password) {
         (user.active !== false) // Chỉ cho phép đăng nhập nếu tài khoản active
     );
     
+    
     if (user) {
         // Lưu thông tin đăng nhập vào localStorage
         localStorage.setItem('currentUser', JSON.stringify(user));
         return true;
     }
     return false;
+    updateAdminStatus();
+    return true;
 }
 
 /**
@@ -96,6 +99,23 @@ function deleteUser(username) {
     }
     return false;
 }
+function updateAdminStatus() {
+    const currentUser = getCurrentUser();
+    const adminNavItem = document.getElementById('admin-nav-item');
+    
+    if (currentUser && currentUser.role === 'admin') {
+        adminNavItem.style.display = 'block';
+    } else {
+        adminNavItem.style.display = 'none';
+    }
+}
+
+// Gọi hàm này khi trang tải và sau khi đăng nhập
+document.addEventListener('DOMContentLoaded', function() {
+    updateAuthStatus();
+    updateAdminStatus(); // Thêm dòng này
+    updateCartCount();
+});
 
 /**
  * Đăng xuất
@@ -103,6 +123,7 @@ function deleteUser(username) {
 function logoutUser() {
     localStorage.removeItem('currentUser');
     window.location.href = 'index.html';
+    updateAdminStatus();
 }
 
 /**
