@@ -10,7 +10,6 @@
     <script src="js/auth.js"></script>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="index.html">2HandShop</a>
@@ -39,13 +38,11 @@
                     </li>
 
                 <ul class="navbar-nav" id="auth-nav">
-                    <!-- Đăng nhập/Đăng ký sẽ được thêm bằng JavaScript -->
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Login/Register Section -->
     <section class="py-5">
         <div class="container">
             <div class="row justify-content-center">
@@ -59,7 +56,6 @@
                         </li>
                     </ul>
                     <div class="tab-content p-4 border border-top-0 rounded-bottom" id="authTabsContent">
-                        <!-- Login Tab -->
                         <div class="tab-pane fade show active" id="login" role="tabpanel">
                             <h3 class="mb-4">Đăng nhập</h3>
                             <form id="loginForm">
@@ -80,7 +76,6 @@
                             </form>
                         </div>
                         
-                        <!-- Register Tab -->
                         <div class="tab-pane fade" id="register" role="tabpanel">
                             <h3 class="mb-4">Đăng ký tài khoản</h3>
                             <form id="registerForm">
@@ -113,7 +108,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-dark text-white py-4">
         <div class="container">
             <div class="row">
@@ -162,8 +156,6 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Xử lý form đăng nhập
-        // Trong login.html
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const username = document.getElementById('loginUsername').value;
@@ -172,7 +164,6 @@
             if (loginUser(username, password)) {
                 const currentUser = getCurrentUser();
 
-            // Chuyển hướng tùy theo role
             if (currentUser.role === 'admin') {
                 window.location.href = 'admin.html';
             } else {
@@ -183,7 +174,6 @@
             }
 
         
-            // Cập nhật trạng thái đăng nhập khi trang tải
             updateAuthStatus();
         });
     </script>

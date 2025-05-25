@@ -13,7 +13,6 @@
     <script src="js/auth.js"></script>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="index.html">2HandShop</a>
@@ -49,14 +48,12 @@
                         </a>
                     </li>
                     <ul class="navbar-nav" id="auth-nav">
-                        <!-- Đăng nhập/Đăng ký sẽ được thêm bằng JavaScript -->
                     </ul>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Profile Section -->
     <section class="py-5">
         <div class="container">
             <div class="row">
@@ -135,7 +132,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- Orders will be loaded here -->
                                         <tr>
                                             <td colspan="5" class="text-center py-4">Bạn chưa có đơn hàng nào</td>
                                         </tr>
@@ -149,7 +145,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-dark text-white py-4">
         <div class="container">
             <div class="row">
@@ -200,35 +195,27 @@
     <!-- Custom JS -->
     <script src="js/script.js"></script>
     <script>
-        // Load profile data on page load
         document.addEventListener('DOMContentLoaded', function() {
             updateCartCount();
             loadProfileData();
         });
 
-        // Function to load profile data
         function loadProfileData() {
             const currentUser = getCurrentUser();
             
             if (currentUser) {
-                // Update profile info
                 document.getElementById('profile-name').textContent = currentUser.name;
                 document.getElementById('profile-username').textContent = '@' + currentUser.username;
                 
-                // Set default values for form
                 document.getElementById('fullname').value = currentUser.name;
                 
-                // Load order history (this would normally come from backend)
                 loadOrderHistory(currentUser.username);
             } else {
-                // If not logged in, redirect to login page
                 window.location.href = 'login.html';
             }
         }
 
-        // Function to load order history (mock data for demo)
         function loadOrderHistory(username) {
-            // In a real app, this would come from an API
             const mockOrders = [
                 {
                     id: 'SHF-2023-001',
@@ -263,7 +250,6 @@
                     orderTable.appendChild(row);
                 });
                 
-                // Update order count
                 document.getElementById('total-orders').textContent = mockOrders.length;
             }
         }

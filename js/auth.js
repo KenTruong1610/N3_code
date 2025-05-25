@@ -1,24 +1,14 @@
-// Dữ liệu người dùng mẫu với role
 const users = [
     { name: "Admin", username: "admin", password: "admin123", role: "admin" },
     { name: "Nguyễn Văn An", username: "an", password: "123456", role: "user", active: true },
     { name: "Trần Thị Bình", username: "binh", password: "123456", role: "user", active: true }
 ];
 
-/**
- * Đăng ký người dùng mới
- * @param {string} name - Họ tên
- * @param {string} username - Tên đăng nhập
- * @param {string} password - Mật khẩu
- * @returns {boolean} - True nếu đăng ký thành công
- */
 function registerUser(name, username, password) {
-    // Kiểm tra username đã tồn tại chưa
     if (users.some(user => user.username === username)) {
         return false;
     }
     
-    // Thêm người dùng mới với role mặc định là user
     users.push({ 
         name, 
         username, 
@@ -29,22 +19,16 @@ function registerUser(name, username, password) {
     return true;
 }
 
-/**
- * Đăng nhập người dùng
- * @param {string} username - Tên đăng nhập
- * @param {string} password - Mật khẩu
- * @returns {boolean} - True nếu đăng nhập thành công
- */
+
 function loginUser(username, password) {
     const user = users.find(user => 
         user.username === username && 
         user.password === password &&
-        (user.active !== false) // Chỉ cho phép đăng nhập nếu tài khoản active
+        (user.active !== false) 
     );
     
     
     if (user) {
-        // Lưu thông tin đăng nhập vào localStorage
         localStorage.setItem('currentUser', JSON.stringify(user));
         return true;
     }
@@ -53,24 +37,14 @@ function loginUser(username, password) {
     return true;
 }
 
-/**
- * Lấy danh sách người dùng (chỉ admin)
- * @returns {array} - Danh sách người dùng
- */
 function getUsers() {
     const currentUser = getCurrentUser();
     if (currentUser && currentUser.role === 'admin') {
-        return users.filter(user => user.username !== 'admin'); // Không trả về admin
+        return users.filter(user => user.username !== 'admin'); 
     }
     return [];
 }
 
-/**
- * Cập nhật trạng thái người dùng (chỉ admin)
- * @param {string} username - Tên đăng nhập
- * @param {boolean} active - Trạng thái
- * @returns {boolean} - True nếu thành công
- */
 function updateUserStatus(username, active) {
     const currentUser = getCurrentUser();
     if (currentUser && currentUser.role === 'admin') {
@@ -83,11 +57,6 @@ function updateUserStatus(username, active) {
     return false;
 }
 
-/**
- * Xóa người dùng (chỉ admin)
- * @param {string} username - Tên đăng nhập
- * @returns {boolean} - True nếu thành công
- */
 function deleteUser(username) {
     const currentUser = getCurrentUser();
     if (currentUser && currentUser.role === 'admin') {
@@ -110,41 +79,29 @@ function updateAdminStatus() {
     }
 }
 
-// Gọi hàm này khi trang tải và sau khi đăng nhập
 document.addEventListener('DOMContentLoaded', function() {
     updateAuthStatus();
-    updateAdminStatus(); // Thêm dòng này
+    updateAdminStatus(); 
     updateCartCount();
 });
 
-/**
- * Đăng xuất
- */
 function logoutUser() {
     localStorage.removeItem('currentUser');
     window.location.href = 'index.html';
     updateAdminStatus();
 }
 
-/**
- * Kiểm tra trạng thái đăng nhập
- * @returns {object|null} - Thông tin người dùng nếu đã đăng nhập
- */
 function getCurrentUser() {
     const user = localStorage.getItem('currentUser');
     return user ? JSON.parse(user) : null;
 }
 
-/**
- * Cập nhật giao diện theo trạng thái đăng nhập
- */
 function updateAuthStatus() {
     const authNav = document.getElementById('auth-nav');
     const currentUser = getCurrentUser();
     
     if (authNav) {
         if (currentUser) {
-            // Hiển thị tên người dùng và nút đăng xuất
             authNav.innerHTML = `
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
@@ -160,7 +117,6 @@ function updateAuthStatus() {
                 </li>
             `;
         } else {
-            // Hiển thị nút đăng nhập
             authNav.innerHTML = `
                 <li class="nav-item">
                     <a class="nav-link" href="login.html">

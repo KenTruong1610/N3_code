@@ -79,7 +79,6 @@
             </ul>
             
             <div class="tab-content" id="adminTabsContent">
-                <!-- Overview Tab -->
                 <div class="tab-pane fade show active" id="overview" role="tabpanel">
                     <div class="row">
                         <div class="col-md-3 mb-4">
@@ -140,7 +139,6 @@
                     </div>
                 </div>
                 
-                <!-- Products Tab -->
                 <div class="tab-pane fade" id="products" role="tabpanel">
                     <div class="d-flex justify-content-between mb-4">
                         <h4>Quản lý sản phẩm</h4>
@@ -162,13 +160,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Sản phẩm sẽ được tải bằng JavaScript -->
                             </tbody>
                         </table>
                     </div>
                 </div>
                 
-                <!-- Orders Tab -->
                 <div class="tab-pane fade" id="orders" role="tabpanel">
                     <div class="d-flex justify-content-between mb-4">
                         <h4>Quản lý đơn hàng</h4>
@@ -205,7 +201,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Orders will be loaded by JavaScript -->
                             </tbody>
                         </table>
                     </div>
@@ -225,7 +220,6 @@
                     </nav>
                 </div>
                 
-                <!-- Shipping Tab -->
                 <div class="tab-pane fade" id="shipping" role="tabpanel">
                     <div class="row mb-4">
                         <div class="col-md-3">
@@ -286,7 +280,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Shipping orders will be loaded by JavaScript -->
                                 </tbody>
                             </table>
                         </div>
@@ -357,13 +350,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Người dùng sẽ được tải bằng JavaScript -->
                             </tbody>
                         </table>
                     </div>
                 </div>
                 
-                <!-- Funds Tab -->
                 <div class="tab-pane fade" id="funds" role="tabpanel">
                     <div class="row mb-4">
                         <div class="col-md-3">
@@ -450,17 +441,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Transactions will be loaded by JavaScript -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Reports Tab -->
                 <div class="tab-pane fade" id="reports" role="tabpanel">
                     <div class="row">
-                        <!-- Cột 1: Doanh thu theo tháng -->
                         <div class="col-md-6 mb-4">
                             <div class="card h-100">
                                 <div class="card-header">
@@ -472,7 +460,6 @@
                             </div>
                         </div>
                         
-                        <!-- Cột 2: Top sản phẩm bán chạy -->
                         <div class="col-md-6 mb-4">
                             <div class="card h-100">
                                 <div class="card-header">
@@ -489,7 +476,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -582,7 +568,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- Report data will be loaded by JavaScript -->
                                     </tbody>
                                 </table>
                             </div>
@@ -590,7 +575,6 @@
                     </div>
                 </div>
                 
-                <!-- Promotions Tab -->
                 <div class="tab-pane fade" id="promotions" role="tabpanel">
                     <div class="d-flex justify-content-between mb-4">
                         <h4>Quản lý khuyến mại</h4>
@@ -620,7 +604,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Promotions will be loaded by JavaScript -->
                             </tbody>
                         </table>
                     </div>
@@ -629,7 +612,6 @@
         </div>
     </section>
 
-    <!-- Add Product Modal -->
     <div class="modal fade" id="addProductModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -681,17 +663,12 @@
         </div>
     </div>
 
-    <!-- Edit Product Modal -->
     <div class="modal fade" id="editProductModal" tabindex="-1" aria-hidden="true">
-        <!-- Content will be loaded dynamically -->
     </div>
 
-    <!-- Order Details Modal -->
     <div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-hidden="true">
-        <!-- Content will be loaded dynamically -->
     </div>
 
-    <!-- Add Transaction Modal -->
     <div class="modal fade" id="addTransactionModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -726,7 +703,6 @@
         </div>
     </div>
 
-    <!-- Add Promotion Modal -->
     <div class="modal fade" id="addPromotionModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -785,12 +761,9 @@
         </div>
     </div>
 
-    <!-- Edit Promotion Modal -->
     <div class="modal fade" id="editPromotionModal" tabindex="-1" aria-hidden="true">
-        <!-- Content will be loaded dynamically -->
     </div>
 
-    <!-- Footer -->
     <footer class="bg-dark text-white py-4">
         <div class="container">
             <div class="row">
@@ -842,7 +815,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <script>
-        // Sample data
         const orders = [
             {
                 id: 'DH001',
@@ -972,7 +944,6 @@
             }
         ];
 
-        // Kiểm tra quyền admin khi trang tải
         document.addEventListener('DOMContentLoaded', function() {
             const currentUser = getCurrentUser();
             
@@ -991,7 +962,6 @@
                 });
             });
 
-    // Load dữ liệu ban đầu
     loadAdminData();
 });
             
@@ -999,7 +969,6 @@
             updateCartCount();
             loadAdminData();
             
-            // Cập nhật tab active khi chuyển tab
             const adminTabs = document.querySelectorAll('#adminTabs .nav-link');
             adminTabs.forEach(tab => {
                 tab.addEventListener('click', function() {
@@ -1009,29 +978,24 @@
             });
             
             
-            // Load tab mặc định
             loadTabContent('overview');
             
-            // Thêm sự kiện cho các nút trong modal
             document.getElementById('saveProductBtn')?.addEventListener('click', addProduct);
             document.getElementById('save-transaction-btn')?.addEventListener('click', addTransaction);
             document.getElementById('save-promotion-btn')?.addEventListener('click', addPromotion);
         ;
         
         function loadAdminData() {
-            // Load tổng quan
             document.getElementById('total-products').textContent = products.length;
             document.getElementById('total-users').textContent = getUsers().length;
             document.getElementById('today-orders').textContent = orders.filter(o => o.date === new Date().toISOString().split('T')[0]).length;
             
-            // Tính tổng doanh thu tháng
             const currentMonth = new Date().getMonth() + 1;
             const monthlyRevenue = orders
                 .filter(o => new Date(o.date).getMonth() + 1 === currentMonth)
                 .reduce((sum, o) => sum + o.total, 0);
             document.getElementById('monthly-revenue').textContent = formatPrice(monthlyRevenue) + ' đ';
             
-            // Vẽ biểu đồ
             drawOrdersChart();
             drawTopProductsChart();
         }
@@ -1060,7 +1024,6 @@
                     loadPromotionsData();
                     break;
                 case 'overview':
-                    // Đã load khi trang tải
                     break;
             }
         }
@@ -1091,7 +1054,6 @@
             
             tableBody.innerHTML = html;
             
-            // Thêm sự kiện cho các nút
             document.querySelectorAll('.edit-product').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const productId = parseInt(this.getAttribute('data-id'));
@@ -1161,7 +1123,6 @@
             
             tableBody.innerHTML = html;
             
-            // Thêm sự kiện cho các nút
             document.querySelectorAll('.view-order').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const orderId = this.getAttribute('data-id');
@@ -1189,7 +1150,6 @@
             document.getElementById('delivered-orders').textContent = deliveredOrders;
             document.getElementById('cancelled-orders').textContent = cancelledOrders;
             
-            // Load shipping table
             const tableBody = document.querySelector('#shipping-table tbody');
             let html = '';
             
@@ -1239,7 +1199,6 @@
             
             tableBody.innerHTML = html;
             
-            // Thêm sự kiện cho dropdown actions
             document.querySelectorAll('.dropdown-item').forEach(item => {
                 item.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1281,13 +1240,12 @@
             
             tableBody.innerHTML = html;
             
-            // Thêm sự kiện cho các nút
             document.querySelectorAll('.toggle-user').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const username = this.getAttribute('data-username');
                     const active = this.getAttribute('data-active') === 'true';
                     updateUserStatus(username, !active);
-                    loadUsersTable(); // Reload bảng
+                    loadUsersTable();
                 });
             });
             
@@ -1296,7 +1254,7 @@
                     const username = this.getAttribute('data-username');
                     if (confirm(`Bạn có chắc chắn muốn xóa người dùng ${username}?`)) {
                         deleteUser(username);
-                        loadUsersTable(); // Reload bảng
+                        loadUsersTable();
                     }
                 });
             });
@@ -1307,7 +1265,7 @@
                 .reduce((sum, t) => sum + t.amount, 0);
             const totalExpense = transactions.filter(t => t.type === 'expense')
                 .reduce((sum, t) => sum + t.amount, 0);
-            const initialFund = 5000000; // Giả lập quỹ đầu kỳ
+            const initialFund = 5000000; 
             const currentFund = initialFund + totalIncome - totalExpense;
             
             document.getElementById('total-income').textContent = formatPrice(totalIncome) + ' đ';
@@ -1315,7 +1273,7 @@
             document.getElementById('initial-fund').textContent = formatPrice(initialFund) + ' đ';
             document.getElementById('current-fund').textContent = formatPrice(currentFund) + ' đ';
             
-            // Load transactions table
+           
             const tableBody = document.querySelector('#funds-table tbody');
             let html = '';
             
@@ -1343,7 +1301,6 @@
             
             tableBody.innerHTML = html;
             
-            // Thêm sự kiện cho nút xóa giao dịch
             document.querySelectorAll('.delete-transaction').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const transactionId = this.getAttribute('data-id');
@@ -1354,7 +1311,6 @@
             });
         }
         function loadTopProductsTable() {
-        // Dữ liệu sản phẩm bán chạy
             const topProducts = [
                 { name: 'Áo khoác denim nam', sold: 120 },
                 { name: 'Váy hoa nữ cổ điển', sold: 95 },
@@ -1378,16 +1334,13 @@
     }
         function loadReportsData() {
             loadTopProductsTable();
-            // Vẽ các biểu đồ
             drawRevenueChart();
             drawTopProductsChart();
             drawConversionChart();
             drawExpensesChart();
             drawRevenueChart();
             
-            // Load detailed report table
             const tableBody = document.querySelector('#detailed-report-table tbody');
-            // Giả lập dữ liệu báo cáo
             const reportData = [
                 { period: '01/03/2025 - 05/03/2025', revenue: 12000000, orders: 15, avgValue: 800000, products: 25, cancelRate: '5%', cost: 5000000, profit: 7000000 },
                 { period: '08/03/2025 - 14/03/2025', revenue: 15000000, orders: 18, avgValue: 833333, products: 30, cancelRate: '3%', cost: 6000000, profit: 9000000 },
@@ -1459,7 +1412,6 @@
             
             tableBody.innerHTML = html;
             
-            // Thêm sự kiện cho các nút
             document.querySelectorAll('.edit-promotion').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const promoCode = this.getAttribute('data-code');
@@ -1489,7 +1441,6 @@
     }
         }
         
-        // Các hàm quản lý sản phẩm
         function addProduct() {
             const name = document.getElementById('productName').value.trim();
             const price = parseInt(document.getElementById('productPrice').value, 10);
@@ -1500,7 +1451,6 @@
             let image = 'images/default-product.png';
 
             if (imageInput.files && imageInput.files[0]) {
-                // Đọc file ảnh và chuyển sang base64 (demo, thực tế nên upload lên server)
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     image = e.target.result;
@@ -1523,7 +1473,6 @@
                     image
                 };
                 products.push(product);
-                // Lưu vào localStorage nếu có
                 if (window.localStorage) {
                     localStorage.setItem('products', JSON.stringify(products));
                 }
@@ -1539,7 +1488,6 @@
             const product = products.find(p => p.id === productId);
             if (!product) return;
             
-            // Tạo nội dung modal chỉnh sửa
             const modalHtml = `
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -1597,7 +1545,6 @@
             const bsModal = new bootstrap.Modal(modal);
             bsModal.show();
 
-            // Xem trước ảnh khi chọn file mới
             document.getElementById('editProductImage').addEventListener('change', function(e) {
                 if (this.files && this.files[0]) {
                     const reader = new FileReader();
@@ -1608,7 +1555,6 @@
                 }
             });
 
-            // Cập nhật sản phẩm khi nhấn nút
             document.getElementById('updateProductBtn').onclick = function() {
                 const id = parseInt(document.getElementById('editProductId').value, 10);
                 const name = document.getElementById('editProductName').value.trim();
@@ -1664,12 +1610,10 @@
             }
         }
         
-        // Các hàm quản lý đơn hàng
         function viewOrderDetails(orderId) {
             const order = orders.find(o => o.id === orderId);
             if (!order) return;
             
-            // Tạo nội dung modal chi tiết đơn hàng
             const productsHtml = order.products.map(p => `
                 <tr>
                     <td>${p.name}</td>
@@ -1871,7 +1815,6 @@
             }
         }
         
-        // Các hàm quản lý khuyến mại
         function addPromotion() {
             const code = document.getElementById('promotion-code').value.trim().toUpperCase();
             const name = document.getElementById('promotion-name').value.trim();
@@ -1921,7 +1864,6 @@
             const promo = promotions.find(p => p.code === promoCode);
             if (!promo) return;
             
-            // Tạo nội dung modal chỉnh sửa khuyến mại
             const modalHtml = `
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -1982,7 +1924,6 @@
             const bsModal = new bootstrap.Modal(modal);
             bsModal.show();
 
-            // Cập nhật khuyến mại khi nhấn nút
             document.getElementById('updatePromotionBtn').onclick = function() {
                 const name = document.getElementById('editPromotionName').value.trim();
                 const type = document.getElementById('editPromotionType').value;
@@ -2032,11 +1973,9 @@
             }
         }
         
-        // Các hàm vẽ biểu đồ
         function drawOrdersChart() {
             const ctx = document.getElementById('ordersChart').getContext('2d');
             
-            // Giả lập dữ liệu
             const months = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6'];
             const ordersData = [120, 190, 150, 210, 180, 250];
             const revenueData = [5000000, 7500000, 6000000, 8500000, 7000000, 9500000];
@@ -2094,7 +2033,6 @@
             const ctx = document.getElementById('topProductsChart');
             if (!ctx) return;
 
-        // Xóa biểu đồ cũ nếu tồn tại
         if (ctx.chart) {
             ctx.chart.destroy();
         }
@@ -2132,7 +2070,6 @@
         function drawRevenueChart() {
             const ctx = document.getElementById('revenueChart').getContext('2d');
             
-            // Giả lập dữ liệu
             const months = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6'];
             const revenueData = [5000000, 7500000, 6000000, 8500000, 7000000, 9500000];
             
@@ -2167,7 +2104,6 @@
         function drawConversionChart() {
             const ctx = document.getElementById('conversionChart').getContext('2d');
             
-            // Giả lập dữ liệu
             const labels = ['Tuần 1', 'Tuần 2', 'Tuần 3', 'Tuần 4'];
             const conversionRates = [2.5, 3.1, 2.8, 3.5];
             
@@ -2200,7 +2136,6 @@
         function drawExpensesChart() {
             const ctx = document.getElementById('expensesChart').getContext('2d');
             
-            // Giả lập dữ liệu
             const months = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6'];
             const expensesData = [2000000, 2500000, 3000000, 2800000, 3200000, 3500000];
             

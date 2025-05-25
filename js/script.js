@@ -1,13 +1,3 @@
-/**
- * Secondhand Fashion Website - Main JavaScript File
- * 
- * This file contains all the main functionality for the website including:
- * - Product management
- * - Cart functionality
- * - Utility functions
- */
-
-// Sample product data
 const products = [
     {
         id: 1,
@@ -65,14 +55,10 @@ const products = [
     }
 ];
 
-/**
- * Load featured products on home page
- */
 function loadFeaturedProducts() {
     const featuredContainer = document.getElementById('featured-products');
     
     if (featuredContainer) {
-        // Get first 4 products
         const featuredProducts = products.slice(0, 4);
         
         let html = '';
@@ -97,7 +83,6 @@ function loadFeaturedProducts() {
         
         featuredContainer.innerHTML = html;
         
-        // Add event listeners to "Add to cart" buttons
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', function() {
                 const productId = parseInt(this.getAttribute('data-id'));
@@ -107,9 +92,6 @@ function loadFeaturedProducts() {
     }
 }
 
-/**
- * Load all products on products page
- */
 function loadProducts() {
     const productsContainer = document.getElementById('products-container');
     
@@ -136,7 +118,6 @@ function loadProducts() {
         
         productsContainer.innerHTML = html;
         
-        // Add event listeners to "Add to cart" buttons
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', function() {
                 const productId = parseInt(this.getAttribute('data-id'));
@@ -146,10 +127,6 @@ function loadProducts() {
     }
 }
 
-/**
- * Filter products by category
- * @param {string} category - The category to filter by ('all', 'men', 'women', 'accessories')
- */
 function filterProducts(category) {
     const productItems = document.querySelectorAll('.product-item');
     
@@ -162,10 +139,6 @@ function filterProducts(category) {
     });
 }
 
-/**
- * Search products by name
- * @param {string} searchTerm - The term to search for
- */
 function searchProducts(searchTerm) {
     const productItems = document.querySelectorAll('.product-item');
     
@@ -179,20 +152,11 @@ function searchProducts(searchTerm) {
     });
 }
 
-// Thêm vào cuối file script.js
-
-/**
- * Thêm sản phẩm mới (chỉ admin)
- * @param {object} productData - Dữ liệu sản phẩm mới
- * @returns {boolean} - True nếu thành công
- */
 function addProduct(productData) {
     const currentUser = getCurrentUser();
     if (currentUser && currentUser.role === 'admin') {
-        // Tạo ID mới
         const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
         
-        // Thêm sản phẩm mới
         products.push({
             id: newId,
             name: productData.name,
@@ -208,12 +172,6 @@ function addProduct(productData) {
     return false;
 }
 
-/**
- * Cập nhật sản phẩm (chỉ admin)
- * @param {number} productId - ID sản phẩm
- * @param {object} productData - Dữ liệu sản phẩm cập nhật
- * @returns {boolean} - True nếu thành công
- */
 function updateProduct(productId, productData) {
     const currentUser = getCurrentUser();
     if (currentUser && currentUser.role === 'admin') {
@@ -231,11 +189,6 @@ function updateProduct(productId, productData) {
     return false;
 }
 
-/**
- * Xóa sản phẩm (chỉ admin)
- * @param {number} productId - ID sản phẩm
- * @returns {boolean} - True nếu thành công
- */
 function deleteProduct(productId) {
     const currentUser = getCurrentUser();
     if (currentUser && currentUser.role === 'admin') {
@@ -248,10 +201,6 @@ function deleteProduct(productId) {
     return false;
 }
 
-/**
- * Load product details on product detail page
- * @param {number} productId - The ID of the product to display
- */
 function loadProductDetails(productId) {
     const product = products.find(p => p.id === productId);
     const productDetailContainer = document.getElementById('product-detail');
@@ -303,7 +252,6 @@ function loadProductDetails(productId) {
             </div>
         `;
         
-        // Xử lý nút thêm vào giỏ hàng
         document.querySelector('.add-to-cart').addEventListener('click', function() {
             const quantity = parseInt(document.querySelector('.quantity-input').value);
             addToCart(product.id, quantity);
@@ -319,7 +267,6 @@ function loadProductDetails(productId) {
             }, 2000);
         });
         
-        // Xử lý nút tăng/giảm số lượng
         document.querySelector('.minus-btn').addEventListener('click', function() {
             const input = document.querySelector('.quantity-input');
             if (parseInt(input.value) > 1) {
@@ -334,15 +281,10 @@ function loadProductDetails(productId) {
     }
 }
 
-/**
- * Load related products (3 sản phẩm ngẫu nhiên khác)
- * @param {number} productId - ID sản phẩm hiện tại (để loại trừ)
- */
 function loadRelatedProducts(productId) {
     const relatedProductsContainer = document.getElementById('related-products');
     
     if (relatedProductsContainer) {
-        // Lấy 3 sản phẩm ngẫu nhiên khác (trừ sản phẩm đang xem)
         const relatedProducts = products
             .filter(p => p.id !== productId)
             .sort(() => 0.5 - Math.random())
@@ -371,7 +313,6 @@ function loadRelatedProducts(productId) {
             
             relatedProductsContainer.innerHTML = html;
             
-            // Thêm sự kiện cho nút "Thêm vào giỏ" ở sản phẩm liên quan
             document.querySelectorAll('.add-to-cart').forEach(button => {
                 button.addEventListener('click', function() {
                     const productId = parseInt(this.getAttribute('data-id'));
@@ -382,11 +323,6 @@ function loadRelatedProducts(productId) {
     }
 }
 
-/**
- * Get category name from category code
- * @param {string} category - The category code
- * @returns {string} The category name
- */
 function getCategoryName(category) {
     const categories = {
         'men': 'Thời trang nam',
@@ -396,25 +332,12 @@ function getCategoryName(category) {
     return categories[category] || 'Khác';
 }
 
-/**
- * Format price with thousand separators
- * @param {number} price - The price to format
- * @returns {string} The formatted price
- */
 function formatPrice(price) {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 }
 
-/**
- * Cart functionality
- */
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-/**
- * Add a product to the cart
- * @param {number} productId - The ID of the product to add
- * @param {number} [quantity=1] - The quantity to add (default: 1)
- */
 function addToCart(productId, quantity = 1) {
     const product = products.find(p => p.id === productId);
     
@@ -436,15 +359,10 @@ function addToCart(productId, quantity = 1) {
         saveCart();
         updateCartCount();
         
-        // Show success message
         alert(`Đã thêm ${product.name} vào giỏ hàng!`);
     }
 }
 
-/**
- * Remove a product from the cart
- * @param {number} productId - The ID of the product to remove
- */
 function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
     saveCart();
@@ -452,11 +370,6 @@ function removeFromCart(productId) {
     updateCartCount();
 }
 
-/**
- * Update the quantity of a product in the cart
- * @param {number} productId - The ID of the product to update
- * @param {number} quantity - The new quantity
- */
 function updateCartItemQuantity(productId, quantity) {
     const item = cart.find(item => item.id === productId);
     
@@ -473,16 +386,10 @@ function updateCartItemQuantity(productId, quantity) {
     }
 }
 
-/**
- * Save the cart to localStorage
- */
 function saveCart() {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-/**
- * Clear the cart
- */
 function clearCart() {
     cart = [];
     saveCart();
@@ -490,9 +397,6 @@ function clearCart() {
     updateCartCount();
 }
 
-/**
- * Update the cart count in the navbar
- */
 function updateCartCount() {
     const countElements = document.querySelectorAll('.cart-count');
     
@@ -505,9 +409,6 @@ function updateCartCount() {
     }
 }
 
-/**
- * Load cart items on cart page
- */
 function loadCartItems() {
     const cartItemsContainer = document.getElementById('cart-items');
     const emptyCartMessage = document.getElementById('empty-cart-message');
@@ -569,7 +470,6 @@ function loadCartItems() {
             
             cartItemsContainer.innerHTML = html;
             
-            // Calculate shipping (fixed at 20,000 đ for demo)
             const shipping = 20000;
             const total = subtotal + shipping;
             
@@ -578,7 +478,6 @@ function loadCartItems() {
             totalElement.textContent = `${formatPrice(total)} đ`;
             checkoutButton.disabled = false;
             
-            // Add event listeners to quantity buttons
             document.querySelectorAll('.minus-btn').forEach(button => {
                 button.addEventListener('click', function() {
                     const productId = parseInt(this.getAttribute('data-id'));
@@ -659,12 +558,10 @@ function loadProductDetails(productId) {
             </div>
         `;
         
-        // Xử lý nút thêm vào giỏ hàng
         document.querySelector('.add-to-cart').addEventListener('click', function() {
             const quantity = parseInt(document.getElementById('quantity').value);
             addToCart(productId, quantity);
             
-            // Hiệu ứng khi thêm thành công
             this.innerHTML = '<i class="fas fa-check me-2"></i> Đã thêm vào giỏ';
             this.classList.remove('btn-primary');
             this.classList.add('btn-success');
@@ -676,11 +573,9 @@ function loadProductDetails(productId) {
             }, 2000);
         });
     } else {
-        // Nếu không tìm thấy sản phẩm, chuyển hướng về trang sản phẩm
         window.location.href = 'products.html';
     }
 }
-// Thêm vào phần đầu script.js (cùng với các biến khác)
 const coupons = [
     { code: 'FREESHIP', discount: 20000, type: 'fixed' },
     { code: 'SALE10', discount: 10, type: 'percent' },
@@ -689,7 +584,6 @@ const coupons = [
 
 let appliedCoupon = null;
 
-// Thêm hàm này vào phần cart functionality
 function applyCoupon() {
     const couponCode = document.getElementById('coupon-code').value.trim();
     const discountElement = document.getElementById('discount-amount');
@@ -711,7 +605,6 @@ function applyCoupon() {
     alert(`Áp dụng mã giảm giá thành công: ${coupon.code}`);
 }
 
-// Cập nhật hàm calculateTotals (nếu chưa có thì thêm mới)
 function calculateTotals() {
     const subtotalElement = document.getElementById('subtotal');
     const shippingElement = document.getElementById('shipping');
@@ -719,9 +612,8 @@ function calculateTotals() {
     const totalElement = document.getElementById('total');
     
     let subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const shipping = 20000; // Phí vận chuyển cố định
+    const shipping = 20000; 
     
-    // Tính giảm giá
     let discount = 0;
     if (appliedCoupon) {
         if (appliedCoupon.type === 'fixed') {
@@ -742,7 +634,6 @@ function calculateTotals() {
 
 calculateTotals();
 
-// Thêm sự kiện cho nút áp dụng mã giảm giá (trong phần DOMContentLoaded)
 document.getElementById('apply-coupon')?.addEventListener('click', applyCoupon);
 
 function checkLoginStatus() {
@@ -752,46 +643,34 @@ function checkLoginStatus() {
     const userDropdowns = document.querySelectorAll('.user-dropdown');
 
     if (isLoggedIn) {
-// Ẩn nút đăng nhập, hiển thị dropdown người dùng
         loginItems.forEach(item => item.style.display = 'none');
         userDropdowns.forEach(dropdown => {
         dropdown.style.display = 'block';
         dropdown.querySelector('.username').textContent = username;
     });
     } else {
-    // Ẩn dropdown người dùng, hiển thị nút đăng nhập
         loginItems.forEach(item => item.style.display = 'block');
         userDropdowns.forEach(dropdown => dropdown.style.display = 'none');
     }
     }
 
-/**
 
-Logout function
-*/
 function logout() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('username');
-    checkLoginStatus(); // Cập nhật giao diện
-    window.location.href = 'index.html'; // Chuyển về trang chủ
+    checkLoginStatus(); 
+    window.location.href = 'index.html'; 
 }
 
-// Gọi hàm kiểm tra khi trang được tải
 document.addEventListener('DOMContentLoaded', function() {
 checkLoginStatus();
 updateCartCount();
 });
-/**
- * Load featured products on home page
- */
-/**
- * Load featured products on home page
- */
+
 function loadFeaturedProducts() {
     const featuredContainer = document.getElementById('featured-products');
     
     if (featuredContainer) {
-        // Get 3 random products (đảm bảo không trùng lặp)
         const shuffledProducts = [...products].sort(() => 0.5 - Math.random());
         const featuredProducts = shuffledProducts.slice(0, 3);
         
@@ -817,7 +696,6 @@ function loadFeaturedProducts() {
         
         featuredContainer.innerHTML = html;
         
-        // Add event listeners
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', function() {
                 const productId = parseInt(this.getAttribute('data-id'));
@@ -831,6 +709,5 @@ function loadFeaturedProducts() {
 }
 
 
-// Initialize cart count on page load
 updateCartCount();
 

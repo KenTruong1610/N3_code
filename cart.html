@@ -13,7 +13,6 @@
     <script src="js/auth.js"></script>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="index.html">2HandShop</a>
@@ -49,14 +48,12 @@
                         </a>
                     </li>
                     <ul class="navbar-nav" id="auth-nav">
-                        <!-- Đăng nhập/Đăng ký sẽ được thêm bằng JavaScript -->
                     </ul>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Cart Section -->
     <section class="py-5">
         <div class="container">
             <h2 class="mb-4">Giỏ hàng của bạn</h2>
@@ -65,7 +62,6 @@
                 <div class="col-lg-8">
                     <div class="card mb-4">
                         <div class="card-body" id="cart-items">
-                            <!-- Cart items will be loaded by JavaScript -->
                             <div class="text-center py-4" id="empty-cart-message">
                                 <i class="fas fa-shopping-cart fa-3x mb-3 text-muted"></i>
                                 <h5>Giỏ hàng của bạn đang trống</h5>
@@ -109,7 +105,6 @@
         </div>
     </section>
 
-    <!-- Checkout Modal -->
     <div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -125,6 +120,14 @@
                                 <div>
                                     <h6 class="mb-0">Ví điện tử Momo</h6>
                                     <small class="text-muted">Thanh toán nhanh chóng qua Momo</small>
+                                </div>
+                            </div>
+                        <a href="#" class="list-group-item list-group-item-action" id="bank-payment">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-university fa-2x me-3"></i>
+                                <div>
+                                    <h6 class="mb-0">Thanh toán chuyển khoản ngân hàng</h6>
+                                    <small class="text-muted">Chuyển khoản qua ngân hàng</small>
                                 </div>
                             </div>
                         </a>
@@ -143,7 +146,6 @@
         </div>
     </div>
 
-    <!-- Payment Success Modal -->
     <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -165,7 +167,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="bg-dark text-white py-4">
         <div class="container">
             <div class="row">
@@ -216,24 +217,61 @@
     <!-- Custom JS -->
     <script src="js/script.js"></script>
     <script>
-        // Load cart items and set up checkout on page load
         document.addEventListener('DOMContentLoaded', function() {
             loadCartItems();
             updateCartCount();
             
-            // Set up checkout button
             document.getElementById('checkout-btn').addEventListener('click', function() {
                 const checkoutModal = new bootstrap.Modal(document.getElementById('checkoutModal'));
                 checkoutModal.show();
             });
-            
-            // Set up payment methods
+            document.getElementById('bank-payment').addEventListener('click', function(e) {
+                e.preventDefault();
+                const checkoutModal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
+                checkoutModal.hide();
+                
+                const bankInfo = `
+                    <div class="bank-transfer-info">
+                        <h5 class="text-center mb-4">Thông tin chuyển khoản</h5>
+                        <div class="bank-info p-3 bg-light rounded mb-3">
+                            <p><strong>Ngân hàng:</strong> Vietcombank</p>
+                            <p><strong>Số tài khoản:</strong> 1234567890</p>
+                            <p><strong>Tên tài khoản:</strong> Công ty TNHH 2HandShop</p>
+                            <p><strong>Chi nhánh:</strong> TP. Hồ Chí Minh</p>
+                            <p><strong>Số tiền:</strong> <span id="bank-amount"></span></p>
+                            <p><strong>Nội dung chuyển khoản:</strong> <span id="bank-content"></span></p>
+                        </div>
+                        <p class="text-muted">Vui lòng chuyển khoản theo thông tin trên và gửi hóa đơn cho chúng tôi qua email hoặc Zalo để xác nhận đơn hàng.</p>
+                        <div class="text-center mt-4">
+                            <button class="btn btn-primary" id="confirm-bank-transfer">Tôi đã chuyển khoản</button>
+                        </div>
+                    </div>
+                `;
+                
+                const modalBody = document.querySelector('#successModal .modal-body');
+                modalBody.innerHTML = bankInfo;
+                
+                const totalElement = document.getElementById('total');
+                const totalText = totalElement.textContent;
+                document.getElementById('bank-amount').textContent = totalText;
+                
+                const randomCode = '2HS-' + Math.floor(1000 + Math.random() * 9000);
+                document.getElementById('bank-content').textContent = `Thanh toan don hang ${randomCode}`;
+                
+                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
+                
+                document.getElementById('confirm-bank-transfer').addEventListener('click', function() {
+                    successModal.hide();
+                    clearCart();
+                    alert('Cảm ơn bạn đã thanh toán! Chúng tôi sẽ xác nhận đơn hàng sau khi kiểm tra chuyển khoản.');
+                });
+            });
             document.getElementById('momo-payment').addEventListener('click', function(e) {
                 e.preventDefault();
                 const checkoutModal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
                 checkoutModal.hide();
                 
-                // Simulate Momo payment
                 setTimeout(function() {
                     const successModal = new bootstrap.Modal(document.getElementById('successModal'));
                     successModal.show();
@@ -246,7 +284,6 @@
                 const checkoutModal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
                 checkoutModal.hide();
                 
-                // Show success message for COD
                 const successModal = new bootstrap.Modal(document.getElementById('successModal'));
                 successModal.show();
                 clearCart();
