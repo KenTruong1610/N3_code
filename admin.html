@@ -792,6 +792,7 @@
                     <h5>Các phương thức thanh toán</h5>
                     <ul class="list-unstyled">
                         <li><i class="fas fa-wallet"></i> Momo</li>
+                        <li><i class="fas fa-university"></i> Thẻ tín dụng</li>
                         <li><i class="fas fa-money-bill-wave"></i> Thanh toán khi nhận hàng</li>
                     </ul>
                 </div>
@@ -1265,7 +1266,7 @@
                 .reduce((sum, t) => sum + t.amount, 0);
             const totalExpense = transactions.filter(t => t.type === 'expense')
                 .reduce((sum, t) => sum + t.amount, 0);
-            const initialFund = 5000000; 
+            const initialFund = 25000000; 
             const currentFund = initialFund + totalIncome - totalExpense;
             
             document.getElementById('total-income').textContent = formatPrice(totalIncome) + ' đ';
